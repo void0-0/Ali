@@ -1,0 +1,1 @@
+/Users/nycolaplaisance/Documents/Auto-fromation/Rust/Challenges/boxing_combo_generator/target/debug/boxing_combo_generator: /Users/nycolaplaisance/Documents/Auto-fromation/Rust/Challenges/boxing_combo_generator/src/main.rs
