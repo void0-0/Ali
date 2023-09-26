@@ -3,7 +3,7 @@
 version = 3
 
 [[package]]
-name = "boxing_combo_generator"
+name = "Ali"
 version = "0.1.0"
 dependencies = [
  "rand",
