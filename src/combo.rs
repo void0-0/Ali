@@ -3,16 +3,17 @@ mod punch_factory;
 use punch_factory::PunchFactory;
 use punch_factory::Punch;
 pub use punch_factory::punch::to_boxer_format::ToBoxerFormat;
+use crate::config::Config;
 
 pub struct Combo {
     inner: Vec<Punch>
 }
 
 impl Combo {
-    pub fn new(length: i32) -> Combo {
+    pub fn new(config: Config) -> Combo {
         let mut factory = PunchFactory::new();
 
-        Combo { inner: (0..length).map(|_| factory.generate_punch()).collect::<Vec<_>>() }
+        Combo { inner: (0..config.length).map(|_| factory.generate_punch()).collect::<Vec<_>>() }
     }
 }
 
