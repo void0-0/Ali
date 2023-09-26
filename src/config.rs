@@ -51,7 +51,7 @@ impl Config {
 
     pub fn default() -> Config {
         Config {
-            allow_same_side_punch: false,
+            allow_same_side_punch: true,
             allow_body_punch: true,
             allow_head_punch: true,
             allow_steps: false,
