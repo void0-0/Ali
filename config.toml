@@ -1,0 +1,7 @@
+allow_same_side_punch = false
+allow_body_punch = true
+allow_head_punch = true
+allow_steps = false
+separator = ", "
+handedness = "RightHanded"
+length = 4
