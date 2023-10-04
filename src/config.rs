@@ -1,8 +1,9 @@
 mod handedness;
+pub mod side;
 
 use std::fs;
 use std::env::Args;
-use handedness::Handedness;
+pub use handedness::Handedness;
 use toml;
 use serde_derive::Deserialize;
 
@@ -20,7 +21,7 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(mut raw_args: Args) -> Config {
+    pub fn new(raw_args: Args) -> Config {
         let config_file_path: String = match raw_args.skip(1).next().and_then(|first_arg| first_arg.parse::<String>().ok()) {
             Some(content_file_path) => content_file_path,
             None => {

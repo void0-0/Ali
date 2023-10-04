@@ -1,3 +1,5 @@
+use rand::Rng;
+
 #[derive(Copy, Clone)]
 pub enum PunchKind {
     Jab = 1,
@@ -6,6 +8,20 @@ pub enum PunchKind {
     RightHook = 4,
     LeftUppercut = 5,
     RightUppercut = 6
+}
+
+impl PunchKind {
+    pub fn gen_left_side_punch_kind() -> PunchKind {
+        let mut rng = rand::thread_rng();
+        let left_side_punch_kinds = vec![PunchKind::Jab, PunchKind::LeftHook, PunchKind::LeftUppercut];
+        left_side_punch_kinds[rng.gen_range(0..=2)]
+    }
+
+    pub fn gen_right_side_punch_kind() -> PunchKind {
+        let mut rng = rand::thread_rng();
+        let left_side_punch_kinds = vec![PunchKind::Direct, PunchKind::RightHook, PunchKind::RightUppercut];
+        left_side_punch_kinds[rng.gen_range(0..=2)]
+    }
 }
 
 impl From<u32> for PunchKind {

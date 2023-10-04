@@ -1,16 +1,18 @@
 use serde_derive::Deserialize;
+use crate::config::side::Side;
 
 #[derive(Deserialize)]
+#[derive(Copy, Clone)]
 pub enum Handedness {
     RightHanded,
     LeftHanded
 }
 
-impl Handedness {
-    pub fn as_str(&self) -> &'static str {
+impl Into<Side> for Handedness {
+    fn into(self) -> Side {
         match self {
-            Handedness::RightHanded => "right_handed",
-            _ => "left_handed"
+            Handedness::RightHanded => Side::Right,
+            _ => Side::Left
         }
     }
 }

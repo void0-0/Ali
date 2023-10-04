@@ -4,4 +4,4 @@ allow_head_punch = true
 allow_steps = false
 separator = ", "
 handedness = "RightHanded"
-length = 4
+length = 20
