@@ -11,16 +11,21 @@ pub enum PunchKind {
 }
 
 impl PunchKind {
+    pub fn gen_first_punch_kind() -> PunchKind {
+        PunchKind::choose_from_vec(vec![PunchKind::Jab, PunchKind::Direct, PunchKind::RightHook, PunchKind::RightUppercut])
+    }
+
     pub fn gen_left_side_punch_kind() -> PunchKind {
-        let mut rng = rand::thread_rng();
-        let left_side_punch_kinds = vec![PunchKind::Jab, PunchKind::LeftHook, PunchKind::LeftUppercut];
-        left_side_punch_kinds[rng.gen_range(0..=2)]
+        PunchKind::choose_from_vec(vec![PunchKind::Jab, PunchKind::LeftHook, PunchKind::LeftUppercut])
     }
 
     pub fn gen_right_side_punch_kind() -> PunchKind {
+        PunchKind::choose_from_vec(vec![PunchKind::Direct, PunchKind::RightHook, PunchKind::RightUppercut])
+    }
+
+    pub fn choose_from_vec(punch_kinds: Vec<PunchKind>) -> PunchKind {
         let mut rng = rand::thread_rng();
-        let left_side_punch_kinds = vec![PunchKind::Direct, PunchKind::RightHook, PunchKind::RightUppercut];
-        left_side_punch_kinds[rng.gen_range(0..=2)]
+        punch_kinds[rng.gen_range(0..=punch_kinds.len())]
     }
 }
 
