@@ -7,8 +7,6 @@ pub use handedness::Handedness;
 use toml;
 use serde_derive::Deserialize;
 
-const DEFAULT_COMBO_LENGTH: i32 = 4;
-
 #[derive(Deserialize)]
 pub struct Config {
     pub allow_same_side_punch: bool,
@@ -40,7 +38,7 @@ impl Config {
             }
         };
 
-        return match toml::from_str(config_file_content.as_str()) {
+        let mut config: Config =  match toml::from_str(config_file_content.as_str()) {
             Ok(config) => config,
             Err(_) => {
                 println!("Unable to load config");
@@ -48,6 +46,15 @@ impl Config {
                 return Config::default();
             }
         };
+
+        if !vec![config.allow_body_punch, config.allow_head_punch].contains(&true) {
+            println!("Targets are invalid");
+            println!("Overwriting target of given config...");
+            config.allow_head_punch = true;
+            config.allow_body_punch = true;
+        }
+
+        config
     }
 
     pub fn default() -> Config {
@@ -58,7 +65,7 @@ impl Config {
             allow_steps: false,
             separator: ", ".to_string(),
             handedness: Handedness::RightHanded,
-            length: DEFAULT_COMBO_LENGTH,
+            length: 4,
         }
     }
 }

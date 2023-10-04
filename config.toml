@@ -5,3 +5,39 @@ allow_steps = false
 separator = ", "
 handedness = "RightHanded"
 length = 20
+
+# allow_same_side_punch
+    # Description: Allows the combo generator to generate punches from either side (right or left) no matter the previous
+    # punch's side.
+    # Type: Boolean
+    # Status: Not yet implemented
+
+# allow_body_punch
+    # Description: Allows the combo generator to generate punches that target the body.
+    # Type: Boolean
+    # Status: Implemented
+
+# allow_head_punch
+    # Description: Allows the combo generator to generate punches that target the head.
+    # Type: Boolean
+    # Status: Implemented
+
+# allow_steps
+    # Description: Allows the combo generator to generate movement steps in between punches.
+    # Type: Boolean
+    # Status: Not yet implemented
+
+# separator
+    # Description: The separator text in between each punches displayed in the terminal.
+    # Type: String
+    # Status: Implemented
+
+# handedness
+    # Description: Determines if the combo generated should be for a southpaw boxer or an orthodox boxer.
+    # Type: "RightHanded" | "LeftHanded"
+    # Status: Implemented
+
+# length
+    # Description: Length of the combo.
+    # Type: Integer
+    # Status: Implemented

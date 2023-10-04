@@ -1,4 +1,4 @@
-mod punch_target;
+pub mod punch_target;
 pub mod punch_kind;
 pub mod to_boxer_format;
 

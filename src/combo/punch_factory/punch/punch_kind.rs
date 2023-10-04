@@ -1,4 +1,5 @@
 use rand::Rng;
+use crate::config::side::Side;
 
 #[derive(Copy, Clone)]
 pub enum PunchKind {
@@ -11,21 +12,31 @@ pub enum PunchKind {
 }
 
 impl PunchKind {
-    pub fn gen_first_punch_kind() -> PunchKind {
+    pub fn gen_punch_kind(is_first_punch: bool, ready_side: Side) -> PunchKind {
+        match is_first_punch {
+            true => PunchKind::gen_first_punch_kind(),
+            false => match ready_side {
+                Side::Right => PunchKind::gen_right_side_punch_kind(),
+                Side::Left => PunchKind::gen_left_side_punch_kind()
+            }
+        }
+    }
+
+    fn gen_first_punch_kind() -> PunchKind {
         PunchKind::choose_from_vec(vec![PunchKind::Jab, PunchKind::Direct, PunchKind::RightHook, PunchKind::RightUppercut])
     }
 
-    pub fn gen_left_side_punch_kind() -> PunchKind {
+    fn gen_left_side_punch_kind() -> PunchKind {
         PunchKind::choose_from_vec(vec![PunchKind::Jab, PunchKind::LeftHook, PunchKind::LeftUppercut])
     }
 
-    pub fn gen_right_side_punch_kind() -> PunchKind {
+    fn gen_right_side_punch_kind() -> PunchKind {
         PunchKind::choose_from_vec(vec![PunchKind::Direct, PunchKind::RightHook, PunchKind::RightUppercut])
     }
 
-    pub fn choose_from_vec(punch_kinds: Vec<PunchKind>) -> PunchKind {
+    fn choose_from_vec(punch_kinds: Vec<PunchKind>) -> PunchKind {
         let mut rng = rand::thread_rng();
-        punch_kinds[rng.gen_range(0..=punch_kinds.len())]
+        punch_kinds[rng.gen_range(0..punch_kinds.len())]
     }
 }
 

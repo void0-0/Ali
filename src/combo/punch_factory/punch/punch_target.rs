@@ -1,3 +1,5 @@
+use rand::RngCore;
+
 #[derive(Copy, Clone)]
 pub enum PunchTarget {
     Head,
@@ -9,6 +11,18 @@ impl PunchTarget {
         match self {
             PunchTarget::Head => "h",
             _ => "b"
+        }
+    }
+
+    pub fn gen_target(allow_head_punch: bool, allow_body_punch: bool) -> PunchTarget {
+        let mut rng = rand::thread_rng();
+
+        match allow_head_punch && allow_body_punch {
+            true => rng.next_u32().into(),
+            false => match allow_head_punch {
+                true => PunchTarget::Head,
+                false => PunchTarget::Body
+            }
         }
     }
 }
