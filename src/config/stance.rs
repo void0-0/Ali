@@ -3,15 +3,15 @@ use crate::config::side::Side;
 
 #[derive(Deserialize)]
 #[derive(Copy, Clone)]
-pub enum Handedness {
-    RightHanded,
-    LeftHanded
+pub enum Stance {
+    Orthodox,
+    Southpaw
 }
 
-impl Into<Side> for Handedness {
+impl Into<Side> for Stance {
     fn into(self) -> Side {
         match self {
-            Handedness::RightHanded => Side::Right,
+            Stance::Orthodox => Side::Right,
             _ => Side::Left
         }
     }

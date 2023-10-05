@@ -1,5 +1,6 @@
 use std::ops;
 
+#[derive(PartialEq)]
 #[derive(Copy, Clone)]
 pub enum Side {
     Right,
