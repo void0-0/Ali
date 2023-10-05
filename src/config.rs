@@ -1,12 +1,11 @@
-mod handedness;
+mod stance;
+pub mod side;
 
 use std::fs;
 use std::env::Args;
-use handedness::Handedness;
+pub use stance::Stance;
 use toml;
 use serde_derive::Deserialize;
-
-const DEFAULT_COMBO_LENGTH: i32 = 4;
 
 #[derive(Deserialize)]
 pub struct Config {
@@ -15,12 +14,12 @@ pub struct Config {
     pub allow_head_punch: bool,
     pub allow_steps: bool,
     pub separator: String,
-    pub handedness: Handedness,
+    pub stance: Stance,
     pub length: i32
 }
 
 impl Config {
-    pub fn new(mut raw_args: Args) -> Config {
+    pub fn new(raw_args: Args) -> Config {
         let config_file_path: String = match raw_args.skip(1).next().and_then(|first_arg| first_arg.parse::<String>().ok()) {
             Some(content_file_path) => content_file_path,
             None => {
@@ -39,7 +38,7 @@ impl Config {
             }
         };
 
-        return match toml::from_str(config_file_content.as_str()) {
+        let mut config: Config =  match toml::from_str(config_file_content.as_str()) {
             Ok(config) => config,
             Err(_) => {
                 println!("Unable to load config");
@@ -47,6 +46,15 @@ impl Config {
                 return Config::default();
             }
         };
+
+        if !vec![config.allow_body_punch, config.allow_head_punch].contains(&true) {
+            println!("Targets are invalid");
+            println!("Overwriting target of given config...");
+            config.allow_head_punch = true;
+            config.allow_body_punch = true;
+        }
+
+        config
     }
 
     pub fn default() -> Config {
@@ -56,8 +64,8 @@ impl Config {
             allow_head_punch: true,
             allow_steps: false,
             separator: ", ".to_string(),
-            handedness: Handedness::RightHanded,
-            length: DEFAULT_COMBO_LENGTH,
+            stance: Stance::Orthodox,
+            length: 4,
         }
     }
 }

@@ -3,5 +3,42 @@ allow_body_punch = true
 allow_head_punch = true
 allow_steps = false
 separator = ", "
-handedness = "RightHanded"
-length = 4
+stance = "Orthodox"
+length = 50
+
+# allow_same_side_punch
+    # Description: Allows the combo generator to generate punches from either side (right or left) no matter the previous
+    # punch's side.
+    # Type: Boolean
+    # Status: Implemented
+
+# allow_body_punch
+    # Description: Allows the combo generator to generate punches that target the body.
+    # Type: Boolean
+    # Status: Implemented
+
+# allow_head_punch
+    # Description: Allows the combo generator to generate punches that target the head.
+    # Type: Boolean
+    # Status: Implemented
+
+# allow_steps
+    # Description: Allows the combo generator to generate movement steps in between punches.
+    # Type: Boolean
+    # Status: Not yet implemented
+
+# separator
+    # Description: The separator text in between each punches displayed in the terminal.
+    # Type: String
+    # Status: Implemented
+
+# stance
+    # Description: Determines if the combo generated should be for a southpaw boxer or an orthodox boxer. (Changes the
+    # first punch threw to be coming from the right side, for an orthodox boxer, or the left side, for a southpaw boxer).
+    # Type: "Orthodox" | "Southpaw"
+    # Status: Implemented
+
+# length
+    # Description: Length of the combo.
+    # Type: Integer
+    # Status: Implemented

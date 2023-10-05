@@ -1,5 +1,5 @@
-mod punch_target;
-mod punch_kind;
+pub mod punch_target;
+pub mod punch_kind;
 pub mod to_boxer_format;
 
 use punch_target::PunchTarget;
