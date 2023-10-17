@@ -1,9 +1,11 @@
 mod punch_factory;
+pub mod format;
 
 use punch_factory::PunchFactory;
 use punch_factory::Punch;
-pub use punch_factory::punch::to_boxer_format::ToBoxerFormat;
 use crate::config::Config;
+use crate::combo::format::Format;
+pub use punch_factory::punch::to_format::ToFormat;
 
 pub struct Combo<'a> {
     inner: Vec<Punch>,
@@ -18,8 +20,8 @@ impl<'a> Combo<'a> {
     }
 }
 
-impl<'a> ToBoxerFormat for Combo<'a> {
-    fn to_boxer_format(&self) -> String {
-        self.inner.iter().map(|punch| punch.to_boxer_format()).collect::<Vec<String>>().join(self.config.separator.as_str())
+impl<'a> ToFormat for Combo<'a> {
+    fn to_format(&self, format: &Format) -> String {
+        self.inner.iter().map(|punch| punch.to_format(format)).collect::<Vec<String>>().join(self.config.separator.as_str())
     }
 }

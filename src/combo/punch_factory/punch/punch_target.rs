@@ -1,4 +1,6 @@
 use rand::RngCore;
+use crate::combo::format::Format;
+use crate::combo::ToFormat;
 
 #[derive(Copy, Clone)]
 pub enum PunchTarget {
@@ -7,13 +9,6 @@ pub enum PunchTarget {
 }
 
 impl PunchTarget {
-    pub fn as_str(&self) -> &'static str {
-        match self {
-            PunchTarget::Head => "h",
-            _ => "b"
-        }
-    }
-
     pub fn gen_target(allow_head_punch: bool, allow_body_punch: bool) -> PunchTarget {
         let mut rng = rand::thread_rng();
 
@@ -24,6 +19,25 @@ impl PunchTarget {
                 false => PunchTarget::Body
             }
         }
+    }
+}
+
+impl ToFormat for PunchTarget {
+    fn to_format(&self, format: &Format) -> String {
+        String::from(
+            match format {
+                Format::Normal =>
+                    match self {
+                        PunchTarget::Head => "Head",
+                        PunchTarget::Body => "Body"
+                    },
+                Format::Boxer =>
+                    match self {
+                        PunchTarget::Head => "h",
+                        PunchTarget::Body => "b"
+                    }
+            }
+        )
     }
 }
 
