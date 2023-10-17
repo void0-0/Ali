@@ -33,6 +33,11 @@ length = 6
     # Type: String
     # Status: Implemented
 
+# format
+    # Description: Determines how the combo should be displayed in the terminal.
+    # Type: "Normal" | "Boxer"
+    # Status: Implemented
+
 # stance
     # Description: Determines if the combo generated should be for a southpaw boxer or an orthodox boxer. (Changes the
     # first punch threw to be coming from the right side, for an orthodox boxer, or the left side, for a southpaw boxer).
