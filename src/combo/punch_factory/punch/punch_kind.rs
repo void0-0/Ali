@@ -1,7 +1,10 @@
+use num_derive::FromPrimitive;
 use rand::Rng;
+use crate::combo::format::Format;
+use crate::combo::ToFormat;
 use crate::config::side::Side;
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, FromPrimitive)]
 pub enum PunchKind {
     Jab = 1,
     Direct = 2,
@@ -45,6 +48,23 @@ impl PunchKind {
     fn choose_from_vec(punch_kinds: Vec<PunchKind>) -> PunchKind {
         let mut rng = rand::thread_rng();
         punch_kinds[rng.gen_range(0..punch_kinds.len())]
+    }
+}
+
+impl ToFormat for PunchKind {
+    fn to_format(&self, format: &Format) -> String {
+        match format {
+            Format::Normal =>
+                String::from( match self {
+                    PunchKind::Jab => "Jab",
+                    PunchKind::Direct => "Direct",
+                    PunchKind::LeftHook => "Left hook",
+                    PunchKind::RightHook => "Right hook",
+                    PunchKind::LeftUppercut => "Left uppercut",
+                    PunchKind::RightUppercut => "Right uppercut"
+                }),
+                Format::Boxer => (self.clone() as i32).to_string()
+            }
     }
 }
 

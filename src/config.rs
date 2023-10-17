@@ -4,6 +4,7 @@ pub mod side;
 use std::fs;
 use std::env::Args;
 pub use stance::Stance;
+use super::combo::format::Format;
 use toml;
 use serde_derive::Deserialize;
 
@@ -14,6 +15,7 @@ pub struct Config {
     pub allow_head_punch: bool,
     pub allow_steps: bool,
     pub separator: String,
+    pub format: Format,
     pub stance: Stance,
     pub length: i32
 }
@@ -64,6 +66,7 @@ impl Config {
             allow_head_punch: true,
             allow_steps: false,
             separator: ", ".to_string(),
+            format: Format::Normal,
             stance: Stance::Orthodox,
             length: 4,
         }

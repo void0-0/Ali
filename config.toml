@@ -2,9 +2,10 @@ allow_same_side_punch = false
 allow_body_punch = true
 allow_head_punch = true
 allow_steps = false
-separator = ", "
+separator = "\n"
+format = "Normal"
 stance = "Orthodox"
-length = 50
+length = 6
 
 # allow_same_side_punch
     # Description: Allows the combo generator to generate punches from either side (right or left) no matter the previous
